@@ -1,3 +1,4 @@
+
 //
 //  LFDrawView.h
 //  LFImagePickerController
@@ -28,5 +29,11 @@
 - (BOOL)canUndo;
 //撤销
 - (void)undo;
+
+
+- (BOOL)canRedo;
+- (void)redo;
+
+
 
 @end

@@ -20,6 +20,12 @@ NSString *const kLFDrawViewData = @"LFDrawViewData";
 /** 图层 */
 @property (nonatomic, strong) NSMutableArray <CALayer *>*layerArray;
 
+/** redo 画笔数据 */
+@property (nonatomic, strong) NSMutableArray <NSDictionary *>*redoBrushData;
+/** redo 图层 */
+@property (nonatomic, strong) NSMutableArray <CALayer *>*redoLayerArray;
+
+
 @end
 
 @implementation LFDrawView
@@ -46,6 +52,8 @@ NSString *const kLFDrawViewData = @"LFDrawViewData";
 {
     _layerArray = [@[] mutableCopy];
     _brushData = [@[] mutableCopy];
+    _redoLayerArray = [NSMutableArray array];
+    _redoBrushData = [NSMutableArray array];
     self.backgroundColor = [UIColor clearColor];
     self.clipsToBounds = YES;
     self.exclusiveTouch = YES;
@@ -96,7 +104,7 @@ NSString *const kLFDrawViewData = @"LFDrawViewData";
             _isWork = YES;
             // 2.添加画笔路径坐标
             [self.brush addPoint:point];
-        }        
+        }
     }
     
     [super touchesMoved:touches withEvent:event];
@@ -110,6 +118,8 @@ NSString *const kLFDrawViewData = @"LFDrawViewData";
         if (data) {
             [self.brushData addObject:data];
         }
+        
+        [self cleanRedo];
         if (self.drawEnded) self.drawEnded();
     } else if (_isBegan) {
         // 3.2.移除开始时添加的图层
@@ -130,6 +140,7 @@ NSString *const kLFDrawViewData = @"LFDrawViewData";
         if (data) {
             [self.brushData addObject:data];
         }
+        [self cleanRedo];
         if (self.drawEnded) self.drawEnded();
     } else if (_isBegan) {
         // 3.2.移除开始时添加的图层
@@ -163,11 +174,43 @@ NSString *const kLFDrawViewData = @"LFDrawViewData";
 - (void)undo
 {
     CALayer *layer = self.layerArray.lastObject;
+    NSDictionary *brashDataDic = self.brushData.lastObject;
+    
+    
     [layer removeFromSuperlayer];
     [self.layerArray removeLastObject];
     [self.brushData removeLastObject];
-    layer = nil;
+
+    [self.redoLayerArray addObject:layer];
+    [self.redoBrushData addObject:brashDataDic];
 }
+
+
+- (BOOL)canRedo
+{
+    return self.redoLayerArray.count > 0;
+}
+
+- (void)redo
+{
+    CALayer *layer = self.redoLayerArray.lastObject;
+    NSDictionary *brashDataDic = self.redoBrushData.lastObject;
+    [self.layer addSublayer:layer];
+    
+    [self.redoLayerArray removeLastObject];
+    [self.redoBrushData removeLastObject];
+
+    [self.layerArray addObject:layer];
+    [self.brushData addObject:brashDataDic];
+    
+}
+
+- (void)cleanRedo
+{
+    [self.redoLayerArray removeAllObjects];
+    [self.redoBrushData removeAllObjects];
+}
+
 
 #pragma mark  - 数据
 - (NSDictionary *)data
@@ -205,3 +248,4 @@ NSString *const kLFDrawViewData = @"LFDrawViewData";
 }
 
 @end
+
