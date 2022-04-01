@@ -147,31 +147,31 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropExtraAspectRatioAttributeName
 //            return;
 //        }
 //    }
-//    [self configScrollView];
-//    [self configCustomNaviBar];
-//    [self configBottomToolBar];
-//    [self configDefaultOperation];
+    [self configScrollView];
+    [self configCustomNaviBar];
+    [self configBottomToolBar];
+    [self configDefaultOperation];
     
-    self.view.backgroundColor = [UIColor redColor];
-    
-    LFText *t = [[LFText alloc] init];
-    t.attributedText = [[NSAttributedString alloc] initWithString:@"aaaaa"];
-    LFStickerItem *item = [[LFStickerItem alloc] init];
-    item.text = t;
-    
-    LFMovingView *mv = [[LFMovingView alloc] initWithItem:item];
-    [self.view addSubview:mv];
-    mv.center = self.view.center;
-    
-    dispatch_time_t delayInNanoSeconds =dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
-    
-    dispatch_after(delayInNanoSeconds, dispatch_get_main_queue(), ^{
-        LFText *t = [[LFText alloc] init];
-        t.attributedText = [[NSAttributedString alloc] initWithString:@"AAAhdsakjfadklsjfjklsdjfklsdfaa"];
-        LFStickerItem *item = [[LFStickerItem alloc] init];
-        item.text = t;
-        mv.item = item;
-    });
+//    self.view.backgroundColor = [UIColor redColor];
+//
+//    LFText *t = [[LFText alloc] init];
+//    t.attributedText = [[NSAttributedString alloc] initWithString:@"aaaaa"];
+//    LFStickerItem *item = [[LFStickerItem alloc] init];
+//    item.text = t;
+//
+//    LFMovingView *mv = [[LFMovingView alloc] initWithItem:item];
+//    [self.view addSubview:mv];
+//    mv.center = self.view.center;
+//
+//    dispatch_time_t delayInNanoSeconds =dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
+//
+//    dispatch_after(delayInNanoSeconds, dispatch_get_main_queue(), ^{
+//        LFText *t = [[LFText alloc] init];
+//        t.attributedText = [[NSAttributedString alloc] initWithString:@"AAAhdsakjfadklsjfjklsdjfklsdfaa"];
+//        LFStickerItem *item = [[LFStickerItem alloc] init];
+//        item.text = t;
+//        mv.item = item;
+//    });
 }
 
 - (void)viewWillAppear:(BOOL)animated
