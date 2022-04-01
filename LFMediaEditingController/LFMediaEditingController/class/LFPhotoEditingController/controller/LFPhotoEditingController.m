@@ -24,6 +24,9 @@
 #import "FilterSuiteUtils.h"
 
 #import "NSObject+LFTipsGuideView.h"
+#import "LFMovingView.h"
+#import "LFStickerItem.h"
+#import "LFText.h"
 
 /************************ Attributes ************************/
 /** 绘画颜色 NSNumber containing LFPhotoEditOperationSubType, default 0 */
@@ -139,26 +142,47 @@ LFPhotoEditOperationStringKey const LFPhotoEditCropExtraAspectRatioAttributeName
     // Do any additional setup after loading the view.
     
     /** 为了适配iOS13的UIModalPresentationPageSheet模态，它会在viewDidLoad之后对self.view的大小调整，迫不得已暂时只能在viewWillAppear加载视图 */
-    if (@available(iOS 13.0, *)) {
-        if (isiPhone && self.presentingViewController && self.navigationController.modalPresentationStyle == UIModalPresentationPageSheet) {
-            return;
-        }
-    }
-    [self configScrollView];
-    [self configCustomNaviBar];
-    [self configBottomToolBar];
-    [self configDefaultOperation];
+//    if (@available(iOS 13.0, *)) {
+//        if (isiPhone && self.presentingViewController && self.navigationController.modalPresentationStyle == UIModalPresentationPageSheet) {
+//            return;
+//        }
+//    }
+//    [self configScrollView];
+//    [self configCustomNaviBar];
+//    [self configBottomToolBar];
+//    [self configDefaultOperation];
+    
+    self.view.backgroundColor = [UIColor redColor];
+    
+    LFText *t = [[LFText alloc] init];
+    t.attributedText = [[NSAttributedString alloc] initWithString:@"aaaaa"];
+    LFStickerItem *item = [[LFStickerItem alloc] init];
+    item.text = t;
+    
+    LFMovingView *mv = [[LFMovingView alloc] initWithItem:item];
+    [self.view addSubview:mv];
+    mv.center = self.view.center;
+    
+    dispatch_time_t delayInNanoSeconds =dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
+    
+    dispatch_after(delayInNanoSeconds, dispatch_get_main_queue(), ^{
+        LFText *t = [[LFText alloc] init];
+        t.attributedText = [[NSAttributedString alloc] initWithString:@"AAAhdsakjfadklsjfjklsdjfklsdfaa"];
+        LFStickerItem *item = [[LFStickerItem alloc] init];
+        item.text = t;
+        mv.item = item;
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    if (_EditingView == nil) {
-        [self configScrollView];
-        [self configCustomNaviBar];
-        [self configBottomToolBar];
-        [self configDefaultOperation];
-    }
+//    [super viewWillAppear:animated];
+//    if (_EditingView == nil) {
+//        [self configScrollView];
+//        [self configCustomNaviBar];
+//        [self configBottomToolBar];
+//        [self configDefaultOperation];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -26,7 +26,8 @@ s.subspec 'LFPhotoEditingController' do |ss|
 ss.resources    = 'LFMediaEditingController/LFMediaEditingController/class/common/*.bundle'
 ss.source_files = 'LFMediaEditingController/LFMediaEditingController/class/*.{h,m}','LFMediaEditingController/LFMediaEditingController/class/LFPhotoEditingController/**/*.{h,m}','LFMediaEditingController/LFMediaEditingController/class/common/**/*.{h,m}'
 #ss.public_header_files = 'LFMediaEditingController/LFMediaEditingController/class/*.h','LFMediaEditingController/LFMediaEditingController/class/LFPhotoEditingController/controller/*.h','LFMediaEditingController/LFMediaEditingController/class/LFPhotoEditingController/model/*.h','LFMediaEditingController/LFMediaEditingController/class/common/view/model/LFStickerContent.h','LFMediaEditingController/LFMediaEditingController/class/common/view/model/LFExtraAspectRatio.h','LFMediaEditingController/LFMediaEditingController/class/common/define/LFExtraAspectRatioProtocol.h'
-#ss.public_header_files = 'LFMediaEditingController/LFMediaEditingController/class/*.h','LFMediaEditingController/LFMediaEditingController/class/LFPhotoEditingController/controller/*.h','LFMediaEditingController/LFMediaEditingController/class/LFPhotoEditingController/model/*.h,LFMediaEditingController/LFMediaEditingController/class/common/**/*.h'
+
+ss.public_header_files = 'LFMediaEditingController/LFMediaEditingController/class/*.h','LFMediaEditingController/LFMediaEditingController/class/LFPhotoEditingController/controller/*.h','LFMediaEditingController/LFMediaEditingController/class/LFPhotoEditingController/model/*.h','LFMediaEditingController/LFMediaEditingController/class/common/view/model/LFStickerContent.h','LFMediaEditingController/LFMediaEditingController/class/common/view/model/LFExtraAspectRatio.h','LFMediaEditingController/LFMediaEditingController/class/common/define/LFExtraAspectRatioProtocol.h','LFMediaEditingController/LFMediaEditingController/class/common/**/*.h'
 ss.dependency 'LFMediaEditingController/JRPickColorView'
 ss.dependency 'LFMediaEditingController/JRFilterBar'
 ss.dependency 'LFMediaEditingController/LFColorMatrix'
@@ -119,5 +120,6 @@ s.subspec 'LFDrawView' do |ss|
 ss.source_files = 'LFMediaEditingController/LFMediaEditingController/class/vendors/LFDrawView/*.{h,m}','LFMediaEditingController/LFMediaEditingController/class/vendors/LFDrawView/**/*.{h,m}'
 ss.public_header_files = 'LFMediaEditingController/LFMediaEditingController/class/vendors/LFDrawView/*.h','LFMediaEditingController/LFMediaEditingController/class/vendors/LFDrawView/**/*.h'
 end
+
 
 end
